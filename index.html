@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>第十一届换届大会邀请函 · 成都理工大学易班学生工作站</title>
+    <meta name="description" content="成都理工大学易班学生工作站第十一届换届大会,谨定于2026年11月11日14:30在第九教学楼一楼报告厅举行,诚邀您莅临见证。">
+    <meta name="theme-color" content="#4a0b0e">
+
+    <!--
+        红金仪式感 H5 邀请函,打开后单屏呈现。
+        交互设计(封面揭开开场、?to= 来宾姓名、data-time 倒计时)参考开源项目
+        dewanakl/undangan (MIT License, https://github.com/dewanakl/undangan),
+        此为零依赖重写,详见 README.md 与同目录 LICENSE。
+    -->
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body data-time="2026-11-11 14:30:00">
+
+    <!-- 金色装饰边框(全程悬浮) -->
+    <div class="frame" aria-hidden="true"></div>
+
+    <!-- 封面:打开邀请函前锁定屏幕 -->
+    <div class="welcome" id="welcome">
+        <div class="particles" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="welcome-inner">
+            <p class="eyebrow fade-seq">成都理工大学易班学生工作站</p>
+            <h1 class="invite-word gold-text fade-seq">邀请函</h1>
+            <p class="cover-sub fade-seq">第十一届换届大会</p>
+            <div class="ornament fade-seq" aria-hidden="true">✦ ────── ❖ ────── ✦</div>
+            <div class="guest-line fade-seq">
+                <span>亲爱的</span><strong data-guest-name>同学</strong>
+            </div>
+            <button type="button" class="open-btn fade-seq" id="open-btn">打开邀请函</button>
+        </div>
+    </div>
+
+    <!-- 正文:单屏呈现,无滚动 -->
+    <main class="page">
+        <section class="single">
+            <p class="eyebrow seq">成都理工大学易班学生工作站</p>
+            <h2 class="gold-text single-title seq">第十一届换届大会</h2>
+            <div class="ornament seq" aria-hidden="true">✦ ────── ❖ ────── ✦</div>
+
+            <div class="guest-line seq">
+                <span>亲爱的</span><strong data-guest-name>同学</strong>
+            </div>
+            <p class="invite-line seq">诚邀您拨冗莅临,共同见证易班人的传承与担当</p>
+
+            <dl class="info seq">
+                <div class="info-row">
+                    <dt>时间</dt>
+                    <dd>2026 年 11 月 11 日(周三)14:30</dd>
+                </div>
+                <div class="info-row">
+                    <dt>地点</dt>
+                    <dd>第九教学楼一楼报告厅</dd>
+                </div>
+            </dl>
+
+            <div class="countdown-block seq">
+                <p class="countdown-label" id="cd-label">距离大会开始</p>
+                <div class="countdown" aria-label="倒计时">
+                    <div class="cd-tile"><span id="cd-day">--</span><small>天</small></div>
+                    <div class="cd-tile"><span id="cd-hour">--</span><small>时</small></div>
+                    <div class="cd-tile"><span id="cd-minute">--</span><small>分</small></div>
+                    <div class="cd-tile"><span id="cd-second">--</span><small>秒</small></div>
+                </div>
+            </div>
+
+            <p class="closing-line seq gold-text">期待您的莅临</p>
+        </section>
+    </main>
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
