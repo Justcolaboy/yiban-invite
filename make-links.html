@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个性化链接生成 · 第十一届换届大会邀请函</title>
+    <style>
+        body {
+            font-family: "Noto Serif SC", "STSong", "KaiTi", "SimSun", serif;
+            background: #2e0608;
+            color: #f7ecd4;
+            max-width: 42rem;
+            margin: 0 auto;
+            padding: 2.5rem 1.4rem;
+            line-height: 1.9;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: #f3dfa0;
+            letter-spacing: 0.2em;
+        }
+
+        label {
+            display: block;
+            margin: 1.6rem 0 0.5rem;
+            color: #f3dfa0;
+        }
+
+        textarea,
+        input {
+            width: 100%;
+            font-family: inherit;
+            font-size: 1rem;
+            background: rgba(212, 175, 55, 0.08);
+            color: #f7ecd4;
+            border: 1px solid rgba(212, 175, 55, 0.55);
+            border-radius: 6px;
+            padding: 0.6rem 0.8rem;
+        }
+
+        textarea {
+            min-height: 9rem;
+            resize: vertical;
+        }
+
+        button {
+            font-family: inherit;
+            font-size: 1rem;
+            color: #f6e27a;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid #d4af37;
+            border-radius: 999px;
+            padding: 0.6rem 2rem;
+            cursor: pointer;
+            margin-top: 1.4rem;
+        }
+
+        ol {
+            padding-left: 1.4rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+            word-break: break-all;
+        }
+
+        .hint {
+            font-size: 0.88rem;
+            color: rgba(243, 223, 160, 0.85);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>个性化邀请链接生成</h1>
+    <p class="hint">先在「邀请函页面地址」填入托管后的线上地址(如 GitHub Pages 链接),再粘贴名单(每行一个姓名),点生成后逐条复制发给对应同学。</p>
+
+    <label for="base">邀请函页面地址(index.html 的线上完整地址)</label>
+    <input id="base" type="url" placeholder="https://你的用户名.github.io/yiban-invite/">
+
+    <label for="names">受邀人名单(每行一个姓名)</label>
+    <textarea id="names" placeholder="张三&#10;李四&#10;王五"></textarea>
+
+    <button type="button" id="gen">生成链接</button>
+    <button type="button" id="copy">复制全部</button>
+
+    <ol id="out"></ol>
+
+    <script>
+        const gen = document.getElementById('gen');
+        const copyBtn = document.getElementById('copy');
+        const out = document.getElementById('out');
+        let links = [];
+
+        gen.addEventListener('click', () => {
+            const base = document.getElementById('base').value.trim().replace(/\?+$/, '');
+            if (!base) {
+                alert('请先填写邀请函页面的线上地址');
+                return;
+            }
+            out.textContent = '';
+            links = document.getElementById('names').value
+                .split('\n')
+                .map((s) => s.trim())
+                .filter(Boolean);
+
+            links.forEach((name) => {
+                const li = document.createElement('li');
+                li.textContent = `${name}:${base}?to=${encodeURIComponent(name)}`;
+                out.appendChild(li);
+            });
+        });
+
+        copyBtn.addEventListener('click', async () => {
+            if (!links.length) {
+                alert('请先生成链接');
+                return;
+            }
+            await navigator.clipboard.writeText(links.map((n) => `${n}:${document.getElementById('base').value.trim()}?to=${encodeURIComponent(n)}`).join('\n'));
+            copyBtn.textContent = '已复制 ✓';
+            setTimeout(() => { copyBtn.textContent = '复制全部'; }, 1500);
+        });
+    </script>
+</body>
+
+</html>
